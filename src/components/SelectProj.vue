@@ -1,7 +1,7 @@
 <template>
     <div>
         <v-app>
-            <v-card class="mx-auto" max-width="600" min-width="500" >
+            <v-card class="mx-auto" max-width="600" min-width="500">
                 <v-card-title>Выберите проект</v-card-title>
                 <v-card-text>
                     <v-text-field
