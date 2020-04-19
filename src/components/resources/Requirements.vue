@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <v-card min-height="310px">
         <v-card-title>
             Требования
         </v-card-title>
@@ -10,7 +10,11 @@
                     :items="requirements"
                     item-key="id"
                     height="50%"
-                    items-per-page="4"
+                    dense
+                    items-per-page="5"
+                    :footer-props="{ 'items-per-page-options': [5, 10, 15, -1],
+                           'items-per-page-text': 'Элементов на странице:',
+                           'items-per-page-all-text': 'Все'}"
             ></v-data-table>
         </v-card-text>
     </v-card>
@@ -21,6 +25,7 @@
         name: "Requirements",
         data() {
             return {
+                selected: [],
                 headers: [
                     {
                         text: 'ID',

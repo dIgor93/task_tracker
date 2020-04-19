@@ -1,7 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Donut from 'vue-css-donut-chart';
+import 'vue-css-donut-chart/dist/vcdonut.css';
 
+Vue.use(Donut);
 Vue.use(VueRouter)
 
 const routes = [
@@ -11,12 +14,35 @@ const routes = [
         component: Home
     },
     {
-        path: '/*',
+        path: '/:project',
         name: 'Project',
-        // route level code-splitting
-        // this generates a separate chunk (about.[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "about" */ '../views/Project.vue')
+        component: () => import('../views/Project.vue'),
+        children:        [
+            {
+                path: 'analysis',
+                component: () => import('../components/Resources.vue')
+            },
+            {
+                path: 'architecture',
+                component: () => import('../components/Resources.vue')
+            },
+            {
+                path: 'development',
+                component: () => import('../components/Resources.vue')
+            },
+            {
+                path: 'testing',
+                component: () => import('../components/Resources.vue')
+            },
+            {
+                path: 'support',
+                component: () => import('../components/Resources.vue')
+            },
+            {
+                path: 'docs',
+                component: () => import('../components/Resources.vue')
+            }
+        ]
     },
 ]
 
