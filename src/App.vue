@@ -7,7 +7,9 @@
                     dark
                     clipped-left
             >
-                <v-icon medium left>mdi-domain</v-icon>
+                <router-link to='/' tag="i">
+                    <v-icon medium left>mdi-domain</v-icon>
+                </router-link>
                 <v-toolbar-title>{{ title }}</v-toolbar-title>
             </v-app-bar>
             <v-content>
