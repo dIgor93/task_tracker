@@ -1,21 +1,20 @@
 <template>
     <div class="project">
-        <Navigation/>
-        <router-view></router-view>
+        <Navigation v-bind:project_id="project" />
+        <router-view ></router-view>
     </div>
 </template>
 
 <script>
-
     import Navigation from "../components/Navigation";
-
     export default {
-        name: "Proj",
-        components: { Navigation},
+        name: "Project",
+        components: { Navigation },
+        props: ['project'],
         data() {
             return {
+
                 selected: [],
-                selectedId: '',
                 headers: [
                     {
                         text: 'ID',
@@ -47,7 +46,6 @@
                     {value: false, id: 239, name: 'Lollipop'},
                     {value: false, id: 230, name: 'Lollipop'},
                 ],
-
             }
         }
     }

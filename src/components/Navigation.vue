@@ -1,42 +1,45 @@
 <template>
-    <v-navigation-drawer absolute dark permanent>
-        <v-list class="py-0">
-            <v-list-item two-line :class="'px-3'">
-                <v-list-item-avatar>
-                    <img src="../assets/01-6_86395.png">
-                </v-list-item-avatar>
-                <v-list-item-content align="left">
-                    <v-list-item-title>{{ getProjectName(project_id, items) }}</v-list-item-title>
-                    <v-list-item-subtitle>Описание проекта</v-list-item-subtitle>
-                </v-list-item-content>
-            </v-list-item>
-            <v-divider></v-divider>
-            <v-list-item-group active-class="primary">
-                <v-list-item
-                        v-for="item in menu_items"
-                        :key="item.name"
-                        link
-                        align="left"
-                >
-                    <v-list-item-content>
-
-                        <router-link :to=project_id+item.ref replace>
-                            <v-list-item-title>{{ item.name }}</v-list-item-title>
-                        </router-link>
+    <div>
+        <v-navigation-drawer absolute dark permanent v-model="drawer">
+            <v-list class="py-0">
+                <v-list-item two-line :class="'px-3'">
+                    <v-list-item-avatar>
+                        <img src="../assets/01-6_86395.png">
+                    </v-list-item-avatar>
+                    <v-list-item-content align="left">
+                        <v-list-item-title>{{ getProjectName(project_id, items) }}</v-list-item-title>
+                        <v-list-item-subtitle>{{ project_id }}</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
-            </v-list-item-group>
-        </v-list>
-    </v-navigation-drawer>
+                <v-divider></v-divider>
+                <v-list-item-group active-class="primary">
+                    <v-list-item
+                            v-for="(item) in menu_items"
+                            :key="item.name"
+                            link
+                            align="left"
+                    >
+                        <v-list-item-content>
+                            <router-link v-bind:to="`/main/${project_id}${item.ref}`" tag="div">
+                                <v-list-item-title>{{ item.name }}</v-list-item-title>
+                                <v-list-item-subtitle>{{ item.id }}</v-list-item-subtitle>
+                            </router-link>
+                        </v-list-item-content>
+                    </v-list-item>
+                </v-list-item-group>
+            </v-list>
+        </v-navigation-drawer>
+
+    </div>
 </template>
 
 <script>
     export default {
         name: "Navigation",
-
+        props: ['project_id'],
         methods: {
             getProjectName: function (id, arr) {
-                console.log(id)
+                console.log('>> ' + id);
                 return arr.filter((item) => {
                     return item.id.toString() === id.toString();
                 })[0].name
@@ -44,10 +47,9 @@
         },
         data() {
             return {
-                project_id: this.$route.params.project,
-                test_route: this.project_id + '/testing',
+                drawer: true,
                 selected: [],
-                selectedId: '',
+                project: this.project_id,
                 headers: [
                     {
                         text: 'ID',
