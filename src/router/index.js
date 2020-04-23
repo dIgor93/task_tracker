@@ -23,27 +23,27 @@ const routes = [
             {
                 name: 'resources',
                 path: 'analysis',
-                component: () => import('../components/Resources.vue')
+                component: () => import('../components/ResourcesAnalysis')
             },
             {
                 path: 'architecture',
-                component: () => import('../components/Resources.vue')
+                component: () => import('../components/ResourcesArchitecture')
             },
             {
                 path: 'development',
-                component: () => import('../components/Resources.vue')
+                component: () => import('../components/ResourcesDevelopment')
             },
             {
                 path: 'testing',
-                component: () => import('../components/TestingRes.vue')
+                component: () => import('../components/ResourcesTesting')
             },
             {
                 path: 'support',
-                component: () => import('../components/Resources.vue')
+                component: () => import('../components/ResourcesSupport')
             },
             {
                 path: 'docs',
-                component: () => import('../components/Resources.vue')
+                component: () => import('../components/ResourcesDocs')
             }
         ]
     }

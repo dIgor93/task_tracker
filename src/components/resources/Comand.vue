@@ -23,40 +23,24 @@
 <script>
     export default {
         name: "Comand",
+        props: ['data'],
         data() {
             return {
                 selected: [],
                 headers: [
-                    {
-                        text: 'ID',
-                        value: 'id'
-                    },
-                    {
-                        text: 'ФИО',
-                        align: 'left',
-                        sortable: false,
-                        value: 'name',
-                    },
-                    {
-                        text: 'Должность',
-                        align: 'left',
-                        sortable: false,
-                        value: 'role',
-                    }
+                    { text: 'ID', value: 'id' },
+                    { text: 'ФИО', value: 'name' },
+                    { text: 'Должность', value: 'role' }
                 ],
-                employers: [
-                    {value: false, id: 3342, name: 'А. С. Пушкин ', role: 'Руководитель проектов'},
-                    {value: false, id: 3332, name: 'Л. Н. Толстой ', role: 'Тимлид'},
-                    {value: false, id: 3346, name: 'М. Горький ', role: 'Ведущий разработчик'},
-                    {value: false, id: 3442, name: 'А. П. Чехов ', role: 'Старший разработчик'},
-                    {value: false, id: 3321, name: 'А. Н. Толстой ', role: 'Старший разработчик'},
-                    {value: false, id: 3344, name: 'Н. В. Гоголь ', role: 'Разработчик'},
-                    {value: false, id: 3344, name: 'А. А. Блок ', role: 'Тестировщик'},
-                    {value: false, id: 3344, name: 'Б. Л. Пастернак ', role: 'Интегратор'},
-
-                ]
+                employers: []
             }
-
+        },
+        mounted() {
+            fetch(`http://localhost:8000/resources/${this.data.project}/command/${this.data.group}`)
+                .then(response => response.json())
+                .then(json => {
+                    this.employers = json
+                })
         }
     }
 </script>

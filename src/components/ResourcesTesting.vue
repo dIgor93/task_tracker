@@ -15,18 +15,18 @@
                         <v-container fluid fill-height>
                             <v-row>
                                 <v-col>
-                                    <Requirements/>
+                                    <Requirements v-bind:data="{project:project_id, group:'testing', id: item.id}"/>
                                 </v-col>
                                 <v-col>
-                                    <Tasks/>
+                                    <Tasks v-bind:data="{project:project_id, group:'testing', id: item.id}"/>
                                 </v-col>
                             </v-row>
                             <v-row>
                                 <v-col>
-                                    <Statistic/>
+                                    <Statistic v-bind:data="{project:project_id, group:'testing', id: item.id}"/>
                                 </v-col>
                                 <v-col>
-                                    <Comand/>
+                                    <Comand v-bind:data="{project:project_id, group:'testing', id: item.id}"/>
                                 </v-col>
                             </v-row>
                         </v-container>
@@ -45,6 +45,7 @@
     export default {
         name: "Testing",
         components: {Comand, Statistic, Tasks, Requirements},
+        props: ['project_id'],
         data() {
             return {
                 tab: null,

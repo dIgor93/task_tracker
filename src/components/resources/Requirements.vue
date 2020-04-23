@@ -23,31 +23,23 @@
 <script>
     export default {
         name: "Requirements",
+        props: ['data'],
         data() {
             return {
                 selected: [],
                 headers: [
-                    {
-                        text: 'ID',
-                        value: 'id'
-                    },
-                    {
-                        text: 'Наименование',
-                        align: 'left',
-                        sortable: false,
-                        value: 'name',
-                    }
+                    { text: 'ID', value: 'id' },
+                    { text: 'Наименование', value: 'name'}
                 ],
-                requirements: [
-                    {value: false, id: 123342, name: 'Requirement Alpha Stage 1 Project Alpha'},
-                    {value: false, id: 123332, name: 'Requirement Alpha Stage 2 Project Betta'},
-                    {value: false, id: 123346, name: 'Requirement Alpha Stage 3 Project Gamma'},
-                    {value: false, id: 123442, name: 'Requirement Alpha Stage 1 Project Alpha'},
-                    {value: false, id: 123321, name: 'Requirement Alpha Stage 2 Project Betta'},
-                    {value: false, id: 123344, name: 'Requirement Alpha Stage 3 Project Gamma'},
-                ]
+                requirements: []
             }
-
+        },
+        mounted() {
+            fetch(`http://localhost:8000/resources/${this.data.project}/requirements/${this.data.group}`)
+                .then(response => response.json())
+                .then(json => {
+                    this.requirements = json
+                })
         }
     }
 </script>

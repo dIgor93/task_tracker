@@ -16,14 +16,18 @@
 <script>
     export default {
         name: "Statistic",
+        props: ['data'],
         data() {
             return {
-                sections: [{ label: 'Active', value: 15, color: 'blue' },
-                    { label: 'Proposed', value: 25, color: 'orange' },
-                    { label: 'Resolve', value: 40, color: 'green' },
-                    { label: 'Closed', value: 20, color: 'gray' }
-                ]
+                sections: []
             }
+        },
+        mounted() {
+            fetch(`http://localhost:8000/resources/${this.data.project}/statistic/${this.data.group}`)
+                .then(response => response.json())
+                .then(json => {
+                    this.sections = json
+                })
         }
     }
 </script>
