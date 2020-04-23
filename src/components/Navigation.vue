@@ -19,11 +19,9 @@
                             link
                             align="left"
                     >
-                        <v-list-item-content>
-                            <router-link v-bind:to="`/main/${project_id}${item.ref}`" tag="div">
+                        <v-list-item-content @click="goto(item.ref)">
                                 <v-list-item-title>{{ item.name }}</v-list-item-title>
                                 <v-list-item-subtitle>{{ item.id }}</v-list-item-subtitle>
-                            </router-link>
                         </v-list-item-content>
                     </v-list-item>
                 </v-list-item-group>
@@ -39,10 +37,12 @@
         props: ['project_id'],
         methods: {
             getProjectName: function (id, arr) {
-                console.log('>> ' + id);
                 return arr.filter((item) => {
                     return item.id.toString() === id.toString();
                 })[0].name
+            },
+            goto: function (theme) {
+                this.$router.push(`/main/${this.project_id}${theme}`);
             }
         },
         data() {
