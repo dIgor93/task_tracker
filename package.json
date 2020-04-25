@@ -4,9 +4,9 @@
   "description": "A Vue.js project",
   "private": true,
   "scripts": {
+    "start": "node server.js",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "start": "node server.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
