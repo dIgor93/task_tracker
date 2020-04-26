@@ -23,7 +23,7 @@
             }
         },
         mounted() {
-            fetch(`https://traker-api-app.herokuapp.com/resources/${this.data.project}/statistic/${this.data.group}`)
+            fetch(`http://localhost:8000/resources/${this.data.project}/statistic/${this.data.group}`)
                 .then(response => response.json())
                 .then(json => {
                     this.sections = json

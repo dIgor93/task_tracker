@@ -61,7 +61,7 @@
             }
         },
         mounted() {
-            fetch('https://traker-api-app.herokuapp.com/projects',)
+            fetch('http://localhost:8000/projects',)
                 .then(response => response.json())
                 .then(json => {
                     this.items = json
