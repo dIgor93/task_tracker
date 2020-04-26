@@ -1,4 +1,4 @@
-# project_manager
+# Task tracker
 
 ## Project setup
 ```
